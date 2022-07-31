@@ -1,12 +1,15 @@
 const express = require("express");
 
+const middleware = require("./middlewares");
+
+const routes = require('./routes');
+
 const app = express();
 
+//middleware
+middleware(app);
+
 //routes
-app.get('/',(req,res,next)=> {
-   res.json({
-       message: "Welcome to the homepage"
-   });
-});
+routes(app);
 
 module.exports = app;
