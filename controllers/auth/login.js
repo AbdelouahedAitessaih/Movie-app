@@ -1,7 +1,7 @@
-const {infoLogger} = require('../../configuration');
+const {logger} = require('../../configuration');
 
 module.exports.getLogin = (req, res, next) => {
-    infoLogger.info('hello');
+    logger.info('hello');
     res.json({
         message: "Welcome to login page"
     });
