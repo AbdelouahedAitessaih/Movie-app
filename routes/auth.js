@@ -1,12 +1,10 @@
 const {Router} = require('express');
-const {getLogin} =require('../controllers');
+const {login, signUp} =require('../controllers');
 
 const router = Router();
 
 router
- .get('/login', getLogin)
- .post('/login')
-    .get('/signup')
-    .post('/signup')
+    .post('/login', login)
+    .post('/signup', signUp)
 
 module.exports = router;

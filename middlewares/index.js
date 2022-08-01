@@ -1,3 +1,5 @@
+const express = require('express');
+
 const morgan = require('morgan');
 
 const {logger} = require('../configuration');
@@ -5,4 +7,6 @@ const {logger} = require('../configuration');
 
 module.exports = (app) => {
     app.use(morgan('combined', {stream: logger.stream}));
+
+    app.use(express.json());
 }

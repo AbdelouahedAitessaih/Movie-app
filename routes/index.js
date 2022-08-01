@@ -1,12 +1,9 @@
 const authRouter = require('./auth');
+const movieRouter = require('./movie');
 
 module.exports = (app) => {
 
     app.use('/auth', authRouter);
 
-    app.get('/',(req,res,next)=> {
-        res.json({
-            message: "Welcome to the Homepage"
-        });
-    });
+    app.use(movieRouter);
 }
