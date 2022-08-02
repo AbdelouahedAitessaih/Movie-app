@@ -1,5 +1,10 @@
 const {User} = require('../../models');
 const createError = require('http-errors');
+const {email} = require('../../configuration');
+const jwt = require('jsonwebtoken');
+const {readFileSync} = require('fs');
+
+const secret = readFileSync('./private.key');
 
 const signUp = (req, res, next) => {
     //Validation
@@ -25,6 +30,12 @@ const signUp = (req, res, next) => {
                 if(err) {
                     return next(createError(500));
                 }
+
+                const token = jwt.sign({email: user.userData['email']}, secret, {
+                    expiresIn: '1h'
+                });
+                email(user.userData['email'], user.userData['name'], token);
+
                 res.status(201).json({
                     message: 'User has been successfully created !'
                 })

@@ -1,5 +1,7 @@
 const {User} = require('../../models');
 const createError = require('http-errors');
+const jwt = require('jsonwebtoken');
+const {readFileSync} = require('fs');
 
 const login = (req, res, next) => {
 
@@ -10,7 +12,12 @@ const login = (req, res, next) => {
                 return next(result);
             }
 
-            res.json(result);
+            const {_id, name, email} = result;
+
+            const secret = readFileSync('./private.key');
+            const token = jwt.sign({_id, name, email}, secret, { expiresIn: '1h' });
+
+            res.json({token});
 
         })
         .catch(err => {

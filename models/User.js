@@ -12,6 +12,7 @@ class User {
             try {
                 const hashedPass = hashSync(this.userData['password'], 12);
                 this.userData['password'] = hashedPass;
+                this.userData['verified'] = false;
                 await db.insertOne(this.userData);
                 cb();
             }catch (e) {
@@ -68,8 +69,9 @@ class User {
 
             dbCon('users', async (db) => {
                try {
-                const user = await db.findOne({email: userData['email']});
-                const check = compareSync(userData['password'], user.password);
+                   // const user = await db.findOne({email: userData['email']}, {projection: {email: 1, password: 1}});
+                   const user = await db.findOne({email: userData['email']});
+                   const check = compareSync(userData['password'], user.password);
 
                 if(!user || !check) {
                     const error = new Error('Please enter valid email and password.');

@@ -5,8 +5,11 @@ const morgan = require('morgan');
 const {logger} = require('../configuration');
 
 
-module.exports = (app) => {
-    app.use(morgan('combined', {stream: logger.stream}));
+module.exports = {
+    middleware: (app) => {
+        app.use(morgan('combined', {stream: logger.stream}));
 
-    app.use(express.json());
+        app.use(express.json());
+    },
+    auth: require('./auth')
 }
