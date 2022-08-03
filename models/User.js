@@ -1,12 +1,28 @@
+/**
+ * User model
+ * @module models/User
+ * @requires module:configuration
+ * @requires module:validators
+ */
+
 const {dbCon} = require('../configuration');
 const {userValidator, loginValidator} = require('../validators');
 const {hashSync, compareSync} = require('bcryptjs');
 
 class User {
+
+    /**
+     * Returns a user instance
+     * @param {Object} userData - user input
+     */
     constructor(userData) {
         this.userData = {...userData};
     };
 
+    /**
+     * Adds user into db
+     * @param {Callback} cb - called after user has been added
+     */
     save(cb) {
         dbCon('users', async (db) => {
             try {
@@ -22,6 +38,10 @@ class User {
         });
     }
 
+    /**
+     * Checks if user exists
+     * @returns {Promise} return if the user exists or not
+     */
     checkExistance() {
         return new Promise((resolve, reject) => {
            dbCon('users', async (db) => {
@@ -52,11 +72,22 @@ class User {
         });
     }
 
+    /**
+     * Validates user object
+     * @param {Object} userData - user input
+     * @static
+     */
     static validate(userData) {
         const result = userValidator.validate(userData);
         return result;
     };
 
+    /**
+     * Login
+     * @param {Object} userData - user input
+     * @returns {Promise} return if the user exists or not
+     * @static
+     */
     static login(userData) {
         return new Promise((resolve, reject) => {
 

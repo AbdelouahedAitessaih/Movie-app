@@ -1,3 +1,8 @@
+/**
+ * Account verification controller
+ * @module controllers/auth/verify
+ */
+
 const jwt = require('jsonwebtoken');
 const {readFileSync} = require('fs');
 const createError = require('http-errors');
@@ -5,6 +10,13 @@ const {dbCon} = require('../../configuration');
 
 const secret = readFileSync('./private.key');
 
+/**
+ * Verify user account
+ * @function verify
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ * @param {Callback} next - callback
+ */
 const verify = (req, res, next) => {
 
     const token = req.query['token'];

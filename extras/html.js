@@ -1,3 +1,14 @@
+/**
+ * Email html
+ * @module extras/html
+ */
+
+/**
+ * Get html for email
+ * @function getHtml
+ * @param {string} name - user full name
+ * @param {string} token - validation token
+ */
 const getHtml = (name, token) => {
     return `
 <!doctype html>

@@ -1,5 +1,15 @@
+/**
+ * User validator
+ * @module validators/userValidator
+ */
+
 const Joi = require('@hapi/joi');
 
+/**
+ * Verifies user object schema
+ * @type {Object}
+ * @const
+ */
 const schema = Joi.object({
    name: Joi.string().required().min(3),
    email: Joi.string().email().required(),
@@ -15,6 +25,11 @@ const schema = Joi.object({
    // username: Joi.string().alphanum().required().min(3).max(10)
 });
 
+/**
+ * Verifies login object schema
+ * @type {Object}
+ * @const
+ */
 const logSchema = Joi.object({
    email: Joi.string().required(),
    password: Joi.string().required()

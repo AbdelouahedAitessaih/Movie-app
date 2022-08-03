@@ -1,6 +1,17 @@
+/**
+ * Send verification emails to new users
+ * @module configuration/email
+ */
+
 const sgMail = require('@sendgrid/mail');
 const {emailHtml} = require('../extras')
 
+/**
+ * @function sendingEmails
+ * @param {string} email - user email
+ * @param {string} name - user fullname
+ * @param {string} token - verification token
+ */
 module.exports = (email, name, token) => {
 
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);

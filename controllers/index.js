@@ -1,8 +1,18 @@
+/**
+ * Controllers handlers
+ * @module controllers
+ * @requires module:controllers/auth/login
+ * @requires module:controllers/auth/signup
+ * @requires module:controllers/auth/verify
+ * @requires module:controllers/movie/movieController
+ * @requires module:controllers/comment/commentController
+ */
+
 const {login} = require('./auth/login');
 const {signUp} = require('./auth/signup');
 const {verify} = require('./auth/verify');
 const {getMovies, getMovie} = require('./movie/movieController');
-const {addComment} = require('./comment/commentController');
+const {getComments, addComment, updateComment, deleteComment} = require('./comment/commentController');
 
 module.exports = {
     login,
@@ -10,5 +20,8 @@ module.exports = {
     verify,
     getMovies,
     getMovie,
-    addComment
+    getComments,
+    addComment,
+    updateComment,
+    deleteComment
 }

@@ -1,8 +1,20 @@
+/**
+ * Login controller
+ * @module controllers/auth/login
+ */
+
 const {User} = require('../../models');
 const createError = require('http-errors');
 const jwt = require('jsonwebtoken');
 const {readFileSync} = require('fs');
 
+/**
+ * Get token to connect by providing valid email and password
+ * @function login
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ * @param {Callback} next - callback
+ */
 const login = (req, res, next) => {
 
     User.login(req.body)
