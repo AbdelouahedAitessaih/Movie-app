@@ -28,7 +28,7 @@
     "http-errors": "^2.0.0",
     "jsdoc": "^3.6.11",
     "jsonwebtoken": "^9.0.0",
-    "mongodb": "^4.8.1",
+    "mongodb": "^4.17.0",
     "morgan": "^1.10.0",
     "winston": "^3.8.1"
   },
